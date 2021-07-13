@@ -1,0 +1,55 @@
+<div class="container">
+   <div class="bar">
+      <div class="header">
+         <img alt="" src="/assets/img/icons/menu.png" width="20" height="14">
+         <img alt="" src="/assets/img/logo/Black logo.png">
+      </div>
+      <div class="user_block">
+         <img alt="" src="/assets/img/avatars/Default avatar.png" width="30" height="30">
+         <p>Tylor Tyly</p>
+      </div>
+      <div class="pages_block">
+         <div class="dashboard">
+            <img alt="" src="/assets/img/icons/dashboard.png">
+            <p>Dashboard</p>
+         </div>
+
+         <div class="newsfeed">
+            <a routerLink="createarticle">
+               <img alt="" src="/assets/img/icons/newspaper.png">
+               <p>New Feed</p>
+            </a>
+            
+         </div>
+         <div class="newsfeed" (click)="updateArticle()">
+           
+               <img alt="" src="/assets/img/icons/post_edit.svg">
+               <p>Edit Feed</p>
+            
+         </div>
+      </div>
+
+   </div>
+
+   <div class="main_container" *ngFor="let item of article">
+   
+      <div class="list_title">
+         <h2>{{item?.title}}</h2>
+      </div>
+      <div class="caption">
+         <app-avatar-card></app-avatar-card>
+         <app-like-card></app-like-card>
+      </div>
+     
+      <div >
+         <img class="img" alt="" src="{{item?.img}}" width="100%">
+      </div>
+      <div class="text_block">
+         <h4>{{item?.tags1}}</h4>
+         <p>{{item?.text}}</p>
+         <h3>{{item?.tags2}}</h3>
+         <p>{{item?.text1}}</p>
+      </div>
+   </div>
+   
+</div>

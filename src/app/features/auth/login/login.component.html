@@ -1,0 +1,17 @@
+<div class="logo__block"></div>
+<div class="main__register">
+
+  <form [formGroup]="formForm" (ngSubmit)="onSubmit()">
+    <h4>login</h4>
+
+    <app-input [user]="user" *ngFor="let user of users" [formForm]="formForm"></app-input>
+
+    <div *ngFor="let button of buttons">
+      <app-button [button]="button"></app-button>
+    </div>
+
+    <app-checkbox></app-checkbox>
+
+  </form>
+
+</div>

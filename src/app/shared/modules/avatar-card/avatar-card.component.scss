@@ -1,0 +1,16 @@
+.container {
+   max-width: 140px;
+   height: 40px;
+   display: flex;
+   justify-content: start;
+   align-items: center;
+}
+.title {
+   font-family: 'Quicksand', sans-serif;
+   font-size: 14px;
+   line-height: 17px;
+   font-weight: 600;
+   color: #313131;
+   text-transform: uppercase;
+   padding: 0 10px;
+}
