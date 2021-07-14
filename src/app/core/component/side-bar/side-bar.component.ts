@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-bar.component.scss']
 })
 export class SideBarComponent implements OnInit {
-
+edite;
+create;
+id;
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

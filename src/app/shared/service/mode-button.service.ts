@@ -6,11 +6,11 @@ import { Observable, of } from 'rxjs';
 })
 export class ModeButtonService {
 
-  buttonLog = [{"name": "login", "icon": "/assets/img/icons/v-in.svg"}];
-  buttonReg = [{"name": "register", "icon": "/assets/img/icons/men+.svg"}];
+  buttonLog = [{"name": "login", "type": "submit", "icon": "/assets/img/icons/v-in.svg"}];
+  buttonReg = [{"name": "register", "type": "submit", "icon": "/assets/img/icons/men+.svg"}];
   buttonCreate = [
-    {"name": "cancel", "icon": "/assets/img/icons/cansel.svg"},
-    {"name": "create", "icon": "/assets/img/icons/create.svg"}
+    // {"name": "cancel", "type": "button", "icon": "/assets/img/icons/cansel.svg"},
+    {"name": "create", "type": "submit", "icon": "/assets/img/icons/create.svg"}
   ];
 
   constructor() { }

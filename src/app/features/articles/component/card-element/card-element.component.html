@@ -1,4 +1,3 @@
-<div class="container_users-card">
    <div class="user_card">
       <img alt="" src="{{article?.img}}" width="430" height="255">
       <div class="conrainer_content-block">
@@ -9,8 +8,8 @@
                <a href="#" class="tags_block">{{article?.tags2}}</a>
             </div>
             <div class="content_block">
-               <h2>{{article?.title}}</h2>
-               <p>{{article?.text}}</p>
+               <h2>{{article?.title | slice: 0:100}}</h2>
+               <p>{{article?.text | slice: 0:100}}</p>
             </div>
             <div class="footer_block">
                <app-avatar-card></app-avatar-card>
@@ -20,4 +19,4 @@
          
       </div>
    </div>
-</div>
+

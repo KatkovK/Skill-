@@ -1,32 +1,40 @@
-<div class="container">
-   <div class="bar">
-      <div class="header">
-         <img alt="" src="/assets/img/icons/menu.png" width="20" height="14">
-         <img alt="" src="/assets/img/logo/Black logo.png">
-      </div>
-      <div class="user_block">
-         <img alt="" src="/assets/img/avatars/Default avatar.png" width="30" height="30">
-         <p>Tylor Tyly</p>
-      </div>
-      <div class="pages_block">
-         <div class="dashboard">
-            <img alt="" src="/assets/img/icons/dashboard.png">
-            <p>Dashboard</p>
-         </div>
-         <div class="newsfeed">
-            <a routerLink="createarticle">
-               <img alt="" src="/assets/img/icons/newspaper.png">
-               <p>New Feed</p>
-            </a>
-            
-         </div>
-      </div>
+<div class="bar">
+   <div class="header">
+      <img alt="" src="/assets/img/icons/menu.png" width="20" height="14">
+      <img alt="" src="/assets/img/logo/Black logo.png">
    </div>
-   <router-outlet></router-outlet>
+   <div class="user_block">
+      <img alt="" src="/assets/img/avatars/Default avatar.png" width="30" height="30">
+      <p>Tylor Tyly</p>
+   </div>
+   <div class="pages_block">
+      <div class="dashboard">
+         <img alt="" src="/assets/img/icons/dashboard.png">
+         <p>Dashboard</p>
+      </div>
+
+      <div class="newsfeed">
+         <img alt="" src="/assets/img/icons/newspaper.png">
+         <p>New Feed</p>
+      </div>
+
+      <div class="actions">
+         <h4>Actions</h4>
+         <div class="newsfeed">
+            <a [routerLink]="['/feedview/:id', create]">
+               <img alt="" src="/assets/img/icons/post_add.svg">
+               <p>Create Post</p>
+            </a>
+         </div>
+
+         <div class="newsfeed">
+            <a [routerLink]="['create']">
+               <img alt="" src="/assets/img/icons/post_edit.svg">
+               <p>Edit Post</p>
+            </a>
+         </div>
+      </div>
+
+   </div>
+
 </div>
-
-
-
-
-
-

@@ -6,18 +6,18 @@ export class Article {
      public title: string,
      public text: string,
      public text1: string,
-     public id?: string
+     public id?: string,
+     public annotation?: string,
    ) {}
-
+  
 }
 
 export class ArticleCreate {
   constructor (
-    public img: {},
-    public title: string,
-    public annotation: string,
-    public text: string,
-    
-
+    public img?: string,
+    public title?: string,
+    public annotation?: string,
+    public text?: string,
+    public id?: string,
   ) {}
 }

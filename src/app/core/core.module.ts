@@ -15,6 +15,7 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
     CommonModule,
     CoreRoutingModule
   ],
+  exports: [ SideBarComponent ],
   providers: [
   //   {
   //   provide: HTTP_INTERCEPTORS,

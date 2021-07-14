@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 import { ArticleService } from 'src/app/features/services/article-service';
 import { Article } from '../../../models/articles';
@@ -10,34 +10,22 @@ import { Article } from '../../../models/articles';
   styleUrls: ['./article-page.component.scss']
 })
 export class ArticlePageComponent implements OnInit {
-
+  
   article: Article[] = [];
-  id: string;
+  
   constructor(
     private activatedRoute: ActivatedRoute,
     private articleService: ArticleService,
-    private router: Router
-  ) 
-  {}
+  ) { }
 
   ngOnInit(): void {
-  
-  this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
-    const id = params.get('id');
 
-    this.articleService.getArticleById(id).subscribe((art) => { 
-      this.article.push(art);
-      console.log(this.article);
-    })
-  })
-  };
+    this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
+      const id = params.get('id');
 
-  ceateArticle() {
-    
-    this.router.navigate(['/create'])
-  }
-
-  updateArticle() {
-    this.router.navigate(['/createarticle'])
+      this.articleService.getArticleById(id).subscribe((art) => {
+        this.article.push(art);
+      })
+    });
   }
 }

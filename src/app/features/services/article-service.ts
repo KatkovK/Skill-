@@ -71,9 +71,11 @@ export class ArticleService {
 
   addArt(articles: ArticleCreate): Observable<ArticleCreate> {
        return this.http.post<ArticleCreate>('http://skillplus.germanywestcentral.cloudapp.azure.com:1337/articles', articles)
-     }
+     };
 
-    
+  updateArticle(articles: ArticleCreate): Observable<ArticleCreate> {
+      return this.http.put<ArticleCreate>(`http://skillplus.germanywestcentral.cloudapp.azure.com:1337/articles/{id}`, articles)
+    };
 
 }
 

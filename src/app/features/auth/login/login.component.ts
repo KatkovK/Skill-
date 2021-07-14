@@ -40,12 +40,18 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.auth.login(this.formForm.value)
+    if (this.formForm.valid) {
+      this.auth.login(this.formForm.value)
       .subscribe(
         (res) => this.router.navigate(['/feedview']),
         (error) => console.log('error')
       )
     console.log(this.formForm.value);
+  } else {
+    console.log('error');
+    
   }
+    }
+   
 }
 

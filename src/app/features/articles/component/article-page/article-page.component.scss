@@ -1,4 +1,4 @@
-.container {
+.row {
    margin: 0;
    padding: 0;
    font-family: 'Quicksand', sans-serif;
@@ -9,54 +9,8 @@
    grid-template-columns: 1fr 5fr;
 }
 
-.bar {
-   box-shadow: 0 0 25px rgb(201, 198, 198);
-   img {
-      margin: 10px 15px;
-   }
-}
-
-.header {
-   display: flex;
-   justify-content: start;
-   align-items: center;
-   border-bottom: 2px solid rgb(201, 198, 198);
-   }
-   
-   p {
-      font-size: 14px;
-      font-weight: 600;
-   }
-   
-   .user_block{
-      display: flex;
-      align-items: center;
-      border-bottom: 2px solid rgb(201, 198, 198);
-   }
-   
-   .dashboard {
-      display: flex;
-      align-items: center;
-   } 
-
-   .newsfeed {
-      display: flex;
-      align-items: center;
-      position: relative;
-      border-bottom: 2px solid rgb(201, 198, 198);
-       a {
-         text-decoration: none;
-         color: black;
-         p {
-            position: absolute;
-            display: inline-block;
-            
-         }
-       } 
-   }
-   
 .main_container {
-   margin: 40px 140px 0 140px;
+   margin: 40px 180px 0 180px;
    display: flex;
    flex-direction: column;
 }
