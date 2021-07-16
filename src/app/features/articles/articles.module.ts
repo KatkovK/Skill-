@@ -5,7 +5,6 @@ import { ArticlesRoutingModule } from './articles-routing.module';
 import { FeedDefaultViewComponent } from './component/feed-default-view/feed-default-view.component';
 import { ArticlePageComponent } from './component/article-page/article-page.component';
 import { CreateArticleComponent } from './component/create-article/create-article.component';
-import { EditArticleComponent } from './component/edit-article/edit-article.component';
 import { CardElementComponent } from './component/card-element/card-element.component';
 import { CoreModule } from 'src/app/core/core.module';
 import { ButtonModule } from 'src/app/shared/modules/button/button.module';
@@ -23,7 +22,6 @@ import { LikeCardModule } from 'src/app/shared/modules/like-card/like-card.modul
     FeedDefaultViewComponent,
     ArticlePageComponent,
     CreateArticleComponent,
-    EditArticleComponent,
     CardElementComponent,
     
   ],

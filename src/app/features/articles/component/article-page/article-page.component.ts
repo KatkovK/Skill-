@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-
+import { switchMap } from 'rxjs/operators';
 import { ArticleService } from 'src/app/features/services/article-service';
 import { Article } from '../../../models/articles';
 
@@ -19,13 +19,9 @@ export class ArticlePageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
-      const id = params.get('id');
-
-      this.articleService.getArticleById(id).subscribe((art) => {
-        this.article.push(art);
-      })
+    this.activatedRoute.paramMap.pipe(switchMap((params: ParamMap) =>   
+       this.articleService.getArticleById(params.get('id')))).subscribe((art)=>{
+            this.article.push(art)
     });
   }
 }

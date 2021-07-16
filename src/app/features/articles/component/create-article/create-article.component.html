@@ -3,13 +3,13 @@
    <app-side-bar></app-side-bar>
 
    <div class="createArticle">
-      <form [formGroup]="formForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
          <div>
             <h2>{{ id ? 'Edite' : 'Create new' }} article</h2>
          </div>
-         <div class="box" *ngFor="let user of article">
+         <div class="box" *ngFor="let input of imputs">
 
-            <app-input [user]="user" [formForm]="formForm"></app-input>
+            <app-input [input]="input" formControlName={{input.name}}></app-input>
 
          </div>
 
@@ -20,12 +20,16 @@
          <div class="file">
             <input type="file" name="imag" size="60" formControlName="imag">
          </div>
-          <button (click)="cancel()">Cancel</button>
+
+         <div class="button">
+            <button (click)="cancel()">Cancel</button>
+         </div>
+
          <div class="button" *ngFor="let button of buttons">
             <app-button [button]="button"></app-button>
          </div>
 
-         <img src="/src/assets/img/icons/create.svg" alt="">
+         <!-- <img alt="" src="/assets/img/icons/createWh.svg"> -->
 
       </form>
    </div>

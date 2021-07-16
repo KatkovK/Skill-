@@ -11,7 +11,10 @@ import { AuthService } from 'src/app/features/services/auth.service';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
+
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(

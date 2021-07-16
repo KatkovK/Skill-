@@ -82,11 +82,40 @@ h2 {
 
 textarea {
    margin: 10px 20px;
+   padding: 10px;
    height: 320px;
    resize: none;
    box-sizing: border-box;
    background: #EAE5E5;
    
+}
+
+button {
+   padding: 8px 130px;
+   border-radius: 20px;
+   border: 1px solid #27AAF0;
+   font-size: 18px;
+   font-weight: 500;
+   line-height: 24px;
+   letter-spacing: 1px;
+   cursor: pointer;
+   transition: 0.3s;
+   margin-bottom: 32px;
+   display: flex;
+   align-items: center;
+   color: #27AAF0;
+   background: white;
+   text-transform: uppercase; 
+   box-sizing: border-box;
+      img {
+         padding-right: 10px;
+       }   
+
+      &:focus,
+      &:hover {
+         background-color: #2f95cc;
+        color: white;
+      }
 }
 
 ::-webkit-file-upload-button {
@@ -117,4 +146,5 @@ textarea {
   display: flex;
   justify-content: center;
 }
+
 

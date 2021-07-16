@@ -16,4 +16,8 @@ h4 {
    text-transform: uppercase;
 }
 
+:host(.ng-touched.ng-invalid){
+   border-color: red;
+   background: rgb(241, 223, 223);
+  }
 

@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { ArticleCreate } from 'src/app/features/models/articles';
+import { switchMap } from 'rxjs/operators';
 
+import { ArticleCreate } from 'src/app/features/models/articles';
 import { ArticleService } from 'src/app/features/services/article-service';
-import { ModeButtonService } from 'src/app/shared/service/mode-button.service';
-import { ModelInputService } from 'src/app/shared/service/model-input.service';
 
 @Component({
   selector: 'app-create-article',
@@ -14,78 +13,67 @@ import { ModelInputService } from 'src/app/shared/service/model-input.service';
 })
 
 export class CreateArticleComponent implements OnInit {
+  buttons = [{"name": "cancel", "type": "button", "icon": "/assets/img/icons/cansel.svg"},
+    { "name": "create", "type": "submit", "icon": "/assets/img/icons/createWh.svg" }
+  ];
+  imputs = [
+    { 'name': 'title', 'label': 'Title', 'type': 'text', 'handler': 'Up to 70 sumbols' },
+    { 'name': 'annotation', 'label': 'Annotation', 'type': 'text', 'handler': 'Couple of sentences' },
+  ]
 
-  formForm: FormGroup;
-  id;
+  form;
+
+  id: string | undefined;
+
   article: ArticleCreate[] = [];
-  buttons = [];
 
   constructor(
-    private userModel: ModelInputService,
-    private buttonModel: ModeButtonService,
+    private fb: FormBuilder,
     private articleService: ArticleService,
     private router: Router,
     private activatedRouter: ActivatedRoute
   ) {
+    this.activatedRouter.paramMap.pipe(
+      switchMap(params => params.getAll('id'))).subscribe((data) => this.id = data);
+
     if (this.id) {
       this.articleService.getArticleById(this.id).subscribe((article) => {
-        this.formForm = new FormGroup({
-          title: new FormControl(article.title, Validators.required),
-          annotation: new FormControl(article.annotation, Validators.required),
-          text: new FormControl(article.text, Validators.required),
-          imag: new FormControl('')
+
+        this.form = this.fb.group({
+          title: article.title,
+          annotation: article.annotation,
+          text: article.text,
+          imag: '',
         });
       })
-      console.log(this.article);
-
     } else {
-      this.formForm = new FormGroup({
-        title: new FormControl('', Validators.required),
-        annotation: new FormControl('', Validators.required),
-        text: new FormControl('', Validators.required),
-        imag: new FormControl('')
+      this.form = this.fb.group({
+        title: '',
+        annotation: '',
+        text: '',
+        imag: '',
       });
     }
-
   }
 
   ngOnInit(): void {
-
-    this.activatedRouter.paramMap.subscribe((params: ParamMap) => {
-      const id = params.get('id');
-
-      this.articleService.getArticleById(id).subscribe((art) => {
-        this.article.push(art);
-        this.id = art.id;
-      })
-    });
-
-    this.userModel.getArticle().subscribe((article) => {
-      this.article = article;
-    });
-
-    this.buttonModel.getButtonCreate().subscribe((button) => {
-      this.buttons = button;
-    });
-
   }
 
   onSubmit() {
     if (this.id) {
-      this.articleService.updateArticle(this.formForm.value).subscribe(
+      this.articleService.updateArticle(this.form.value).subscribe(
         (res) => this.router.navigate(['feedview']),
         (error) => console.log('error')
       );
-      console.log(this.formForm.value);
-      this.formForm.reset();
+      this.form.reset();
     }
     else {
-      this.articleService.addArt(this.formForm.value).subscribe(
+      this.articleService.addArt(this.form.value).subscribe(
         (res) => this.router.navigate(['feedview']),
         (error) => console.log('error')
       );
-      console.log(this.formForm.value);
-      this.formForm.reset();
+      console.log(this.form.value);
+      this.form.reset();
     }
   }
 
@@ -93,3 +81,7 @@ export class CreateArticleComponent implements OnInit {
     this.router.navigate(['feedview']);
   }
 }
+
+
+
+// {"name": "cancel", "type": "button", "icon": "/assets/img/icons/cansel.svg"},

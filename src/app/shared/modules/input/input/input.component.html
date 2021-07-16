@@ -1,22 +1,8 @@
-<div [formGroup]="formForm">
-   <input type="{{user.type}}" name="{{user.name}}" placeholder=" " formControlName="{{user.name}}">
-   <label>{{user.label}}</label>
-   <p>{{user.handler}}</p>
+<div>
+   <input type="{{input.type}}"
+   [(ngModel)]="inputF"
+   (ngModelChange)="onChange($event)"
+   (blure)="onTouch" plaseholder=" ">
+   <label>{{input.label}}</label>
+   <p>{{input.handler}}</p>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- <!-- <p *ngIf="userForm.get('password').invalid && userForm.get('password').touched" style="color: red">6 symbols or more</p> -->

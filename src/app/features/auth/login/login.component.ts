@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ModeButtonService } from 'src/app/shared/service/mode-button.service';
-import { ModelInputService } from 'src/app/shared/service/model-input.service';
+
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -10,48 +9,43 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
 
-  formForm: FormGroup;
+  form: FormGroup;
 
-  authUser = [];
-  users = [];
-  buttons = [];
+  buttons = [{ "name": "login", "type": "submit", "icon": "/assets/img/icons/v-in.svg" }];
+  inputs = [
+    { 'name': 'identifier', 'label': 'Username', 'type': 'text', 'handler': '6 symbols or more' },
+    { 'name': 'password', 'label': 'Password', 'type': 'password', 'handler': '6 symbols or more' },
+  ];
 
-  constructor(private auth: AuthService,
-    private userModel: ModelInputService,
-    private buttonModel: ModeButtonService,
-    private router: Router) {
-  }
-
-  ngOnInit(): void {
-    this.formForm = new FormGroup({
-      identifier: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      password: new FormControl('', [Validators.required, Validators.minLength(5)])
-    });
-
-    this.userModel.getUser().subscribe((user) => {
-      this.users = user;
-    });
-
-    this.buttonModel.getButtonLog().subscribe((buttonLog) => {
-      this.buttons = buttonLog;
+  constructor(
+    private auth: AuthService,
+    private router: Router
+  ) {
+    this.form = new FormGroup({
+      identifier: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
     })
   }
 
-  onSubmit() {
-    if (this.formForm.valid) {
-      this.auth.login(this.formForm.value)
-      .subscribe(
-        (res) => this.router.navigate(['/feedview']),
-        (error) => console.log('error')
-      )
-    console.log(this.formForm.value);
-  } else {
-    console.log('error');
-    
+  ngOnInit(): void {
   }
+
+  onSubmit() {
+    if (this.form.valid) {
+      this.auth.login(this.form.value)
+        .subscribe(
+          (res) => this.router.navigate(['/feedview']),
+          (error) => console.log('error')
+        )
+    } else {
+      
+      console.log('error');
     }
-   
+  }
 }
+
+
 

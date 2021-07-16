@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './button/button.component';
 
 
-
-
 @NgModule({
   declarations: [
     ButtonComponent

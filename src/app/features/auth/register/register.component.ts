@@ -1,44 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
-import { ModeButtonService } from 'src/app/shared/service/mode-button.service';
-import { ModelInputService } from 'src/app/shared/service/model-input.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent implements OnInit {
 
-  users = [];
-  buttons =[];
-  formForm: FormGroup;
+  buttons = [{ "name": "register", "type": "submit", "icon": "/assets/img/icons/men+.svg" }];
+  inputs = [
+    { 'name': 'username', 'label': 'Username', 'type': 'text', 'handler': '6 symbols or more' },
+    { 'name': 'email', 'label': 'Email', 'type': 'text', 'handler': 'frick@gmail.com' },
+    { 'name': 'password', 'label': 'Password', 'type': 'password', 'handler': '6 symbols or more' }
+  ];
 
-  constructor(
-    private userModel: ModelInputService,
-    private buttonModel: ModeButtonService, 
-  )
-   {
-    this.formForm = new FormGroup ({
-      identifier: new FormControl('', Validators.required),
+  form: FormGroup;
+
+  constructor(private authService: AuthService,
+    private router: Router
+  ) {
+    this.form = new FormGroup({
+      username: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required)
-   })
-   }
+    })
+  }
 
   ngOnInit(): void {
-    
-    this.userModel.getUserRegister().subscribe((userRegister) => {
-      this.users = userRegister;  
-    });
-
-    this.buttonModel.getButtonReg().subscribe((buttonReg) => {
-      this.buttons = buttonReg;  
-    });
 
   }
   onSubmit() {
-    console.log(this.formForm.value);
-    
+    console.log(this.form.value);
+    this.authService.register(this.form.value).subscribe(
+      (res) => this.router.navigate(['/login']),
+      (error) =>  console.log('error')
+    );
+    this.form.reset();
   }
 }

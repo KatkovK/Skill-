@@ -1,17 +1,16 @@
 <div class="logo__block"></div>
 <div class="main__register">
 
-  <form [formGroup]="formForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <h4>login</h4>
 
-    <app-input [user]="user" *ngFor="let user of users" [formForm]="formForm"></app-input>
+    <app-input [input]="input" *ngFor="let input of inputs" formControlName={{input.name}}></app-input>
 
     <div *ngFor="let button of buttons">
       <app-button [button]="button"></app-button>
     </div>
 
-    <app-checkbox></app-checkbox>
-
   </form>
 
+  <app-checkbox></app-checkbox>
 </div>
